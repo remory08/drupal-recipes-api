@@ -1,0 +1,34 @@
+<?php
+define('RECIPES_CONTENT_TYPE', 'recipes');
+/**
+ * Implements hook_menu().
+ */
+ function recipes_api_menu() {
+   $items = array();
+   $items['api/recipes'] = array(
+     'type' => MENU_CALLBACK,
+     'file' => 'recipes_api.api.inc',
+     'page callback' => 'recipes_api_list_json',
+     'access callback' => TRUE //@todo
+   );
+
+   $items['api/dish-types'] = array(
+     'type' => MENU_CALLBACK,
+     'file' => 'recipes_api.api.inc',
+     'page callback' => 'dish_types_api_list_json',
+     'access callback' => TRUE //@todo
+   );
+
+   return $items;
+ }
+
+ //dpm(field_info_fields());
+/**
+ * @param array $data - data to be serialized as JSON which is then sent to
+ * the browser with the appropriate headers.
+ */
+ function _recipes_api_json_respond($data) {
+   print drupal_json_encode($data);
+  //  drupal_json_output($data);
+   drupal_exit();
+ }

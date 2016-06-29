@@ -1,0 +1,4 @@
+name = Recipes API
+description = Provides API endpoints for the Recipes API.
+package = Ryne
+core = 7.x
